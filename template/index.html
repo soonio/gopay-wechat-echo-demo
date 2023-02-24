@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #go-pay {
+            margin: 20vh auto;
+            width: 200px;
+            font-size: 40px;
+            border: 1px solid #333333;
+            text-align: center;
+            background-color: #ccc
+        }
+        #time {
+            margin: 0 auto;
+            width: 250px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div style="width: 100%">
+    <div id="go-pay">去支付</div>
+    <div id="time"></div>
+</div>
+<script>
+    document.getElementById("time").innerText = new Date().toString()
+    const url = "https://msr.10in.com/devtool/h5"
+    // const url = "http://127.0.0.1:8033/h5"
+    document.getElementById("go-pay").onclick = function () {
+        fetch(url, {method: "POST"}).then(response => response.json()).then(data => {
+            console.log(data)
+            window.location.replace(data.data)
+        })
+    }
+</script>
+</body>
+</html>
